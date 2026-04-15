@@ -1,0 +1,63 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.page-header h1 { font-size: 2rem; font-weight: 700; }
+
+.icon-btn {
+  background: transparent; border: none; cursor: pointer; padding: 12px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.3s ease;
+}
+.icon-btn:hover { background: var(--surface-border); }
+
+.explore-section { margin-bottom: 24px; }
+
+.news-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.news-content {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.news-content h4 { font-size: 1rem; margin-bottom: 4px; font-weight: 600; color: var(--text-primary); }
+.news-content p { font-size: 0.85rem; color: var(--text-secondary); }
+
+.checklist-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--surface-border);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.checklist-item:hover { 
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--accent-primary);
+}
+
+.checklist-item label {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
