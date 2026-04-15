@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, Compass, Camera, ShieldAlert, Sparkles } from 'lucide-react';
+import { Home, Compass, Camera, ShieldAlert, Sparkles, User } from 'lucide-react';
 import './BottomNav.css';
 
 const BottomNav = () => {
@@ -26,6 +26,10 @@ const BottomNav = () => {
       <NavLink to="/emergency" className={({isActive}) => isActive ? "nav-item active" : "nav-item"}>
         <ShieldAlert size={24} />
         <span>SOS</span>
+      </NavLink>
+      <NavLink to="/profile" className={({isActive}) => isActive ? "nav-item active" : "nav-item"}>
+        <User size={24} />
+        <span>Me</span>
       </NavLink>
     </nav>
   );

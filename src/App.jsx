@@ -8,6 +8,7 @@ import Explore from './pages/Explore';
 import Capture from './pages/Capture';
 import Emergency from './pages/Emergency';
 import AuraMode from './pages/AuraMode';
+import Profile from './pages/Profile';
 import './App.css';
 
 // Layout wrapper to hide BottomNav on login
@@ -27,6 +28,7 @@ const AppLayout = () => {
         <Route path="/capture" element={<Capture />} />
         <Route path="/aura" element={<AuraMode />} />
         <Route path="/emergency" element={<Emergency />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
 
       {!isLogin && <BottomNav />}
