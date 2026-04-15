@@ -53,9 +53,17 @@
 }
 
 @keyframes pulse-danger {
-  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-  70% { box-shadow: 0 0 0 20px rgba(239, 68, 68, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 20px rgba(239, 68, 68, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
 }
 
 .contacts-section {
@@ -71,8 +79,13 @@
   gap: 16px;
 }
 
-.danger-border { border-left: 4px solid var(--danger); }
-.warning-border { border-left: 4px solid var(--warning); }
+.danger-border {
+  border-left: 4px solid var(--danger);
+}
+
+.warning-border {
+  border-left: 4px solid var(--warning);
+}
 
 .contact-icon {
   background: var(--surface-border);
@@ -108,4 +121,8 @@
   font-weight: 600;
   cursor: pointer;
 }
-.warning-btn { background: var(--danger); color: white; }
+
+.warning-btn {
+  background: var(--danger);
+  color: white;
+}

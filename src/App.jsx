@@ -1,7 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import ThemeSelector from './components/ThemeSelector';
 import BottomNav from './components/BottomNav';
+import PageTransition from './components/PageTransition';
+
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Explore from './pages/Explore';
@@ -20,16 +23,18 @@ const AppLayout = () => {
     <>
       <ThemeSelector />
       
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/explore" element={<Explore />} />
-        <Route path="/capture" element={<Capture />} />
-        <Route path="/aura" element={<AuraMode />} />
-        <Route path="/emergency" element={<Emergency />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<PageTransition><Login /></PageTransition>} />
+          <Route path="/login" element={<PageTransition><Login /></PageTransition>} />
+          <Route path="/home" element={<PageTransition><Home /></PageTransition>} />
+          <Route path="/explore" element={<PageTransition><Explore /></PageTransition>} />
+          <Route path="/capture" element={<PageTransition><Capture /></PageTransition>} />
+          <Route path="/aura" element={<PageTransition><AuraMode /></PageTransition>} />
+          <Route path="/emergency" element={<PageTransition><Emergency /></PageTransition>} />
+          <Route path="/profile" element={<PageTransition><Profile /></PageTransition>} />
+        </Routes>
+      </AnimatePresence>
 
       {!isLogin && <BottomNav />}
     </>

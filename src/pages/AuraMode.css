@@ -1,95 +1,151 @@
+/* Update to original CSS to handle camera container */
 .aura-page {
   display: flex;
   flex-direction: column;
 }
 
-.aura-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-.aura-header h1 { font-size: 2rem; font-weight: 700; }
-
-.aura-activate-container {
+.aura-idle-view {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.aura-header {
+  margin-bottom: 40px;
+}
+.aura-header h1 { font-size: 2.2rem; font-weight: 800; }
+
+.aura-activate-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .aura-activate-btn {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  background: linear-gradient(135deg, var(--accent-secondary), #d946ef);
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 0 10px rgba(139, 92, 246, 0.2);
+  box-shadow: 0 0 0 10px rgba(217, 70, 239, 0.2);
   animation: pulse-aura 3s infinite;
-  transition: transform 0.3s;
 }
-.aura-activate-btn:hover { transform: scale(1.05); }
 
 .aura-hint {
-  margin-top: 24px;
+  margin-top: 30px;
   color: var(--text-secondary);
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 @keyframes pulse-aura {
-  0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); }
-  50% { box-shadow: 0 0 0 25px rgba(139, 92, 246, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(217, 70, 239, 0.5); }
+  70% { box-shadow: 0 0 0 30px rgba(217, 70, 239, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(217, 70, 239, 0); }
 }
 
 .aura-active-view {
   flex: 1;
-  display: flex;
-  flex-direction: column;
+  position: relative;
   border-radius: 24px;
   overflow: hidden;
-  position: relative;
-  background-image: url('https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=600&q=80');
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  background: #1a0b2e;
+}
+
+.aura-live-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Mystical AR Filter */
+  filter: contrast(130%) brightness(70%) sepia(80%) hue-rotate(240deg) saturate(250%);
+}
+
+.aura-overlay-filter {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at center, transparent 30%, rgba(26, 11, 46, 0.9) 100%);
+  pointer-events: none;
+  z-index: 10;
 }
 
 .ar-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  z-index: 20;
+}
+
+.ar-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  z-index: 30;
+  cursor: pointer;
+  background: rgba(0,0,0,0.5);
+}
+
+.ar-scanning-ui {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
 }
 
-.ar-target {
+.scanning-rings {
+  position: relative;
   width: 250px;
   height: 250px;
-  border: 2px dashed rgba(255,255,255,0.5);
-  border-radius: 50%;
-  margin-bottom: auto;
-  margin-top: 40px;
-  animation: spin-slow 20s linear infinite;
+  margin-bottom: 40px;
 }
 
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.ring {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 2px dashed rgba(217, 70, 239, 0.8);
+  border-radius: 50%;
 }
+.ring-1 { animation: spin-slow 10s linear infinite; }
+.ring-2 { animation: spin-fast-reverse 6s linear infinite; border-style: solid; border-width: 1px; border-color: rgba(96, 165, 250, 0.5); transform: scale(0.8); }
+
+@keyframes spin-slow { 100% { transform: rotate(360deg); } }
+@keyframes spin-fast-reverse { 100% { transform: scale(0.8) rotate(-360deg); } }
+
+.scanning-text {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0,0,0,0.6);
+  padding: 12px 24px;
+  border-radius: 30px;
+  color: white;
+}
+.spin-icon { animation: spin 1.5s linear infinite; color: #d946ef; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
 
 .ar-info-card {
-  width: 100%;
+  margin-top: auto;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
   padding: 24px;
   background: rgba(15, 23, 42, 0.85); /* Dark base over the AR */
   color: white;
-  border-color: rgba(255,255,255,0.2);
+  border-color: rgba(217, 70, 239, 0.3);
 }
 
 .ar-title {
@@ -98,30 +154,62 @@
   gap: 12px;
   margin-bottom: 12px;
 }
-.ar-title h4 { font-size: 1.2rem; font-weight: 600; }
+.ar-title h4 { font-size: 1.4rem; font-weight: 700; color: #eaddff; }
 
 .pulse-icon { animation: pulse-soft 2s infinite; }
 
 .ar-info-card p {
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.6;
   color: rgba(255,255,255,0.9);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+}
+
+.audio-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .play-audio-btn {
   background: white;
   color: #0f172a;
   border: none;
-  padding: 12px 20px;
+  padding: 14px 20px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  font-weight: 600;
+  gap: 12px;
+  font-weight: 700;
   width: 100%;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: all 0.2s;
+  font-size: 1rem;
 }
-.play-audio-btn:active { transform: scale(0.95); }
+.play-audio-btn.playing {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+  animation: pulse-soft 2s infinite;
+}
+
+/* Audio visualizer bars */
+.audio-visualizer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+}
+
+.bar {
+  width: 6px;
+  background: var(--accent-primary);
+  border-radius: 3px;
+  animation: equalize 1s infinite alternate ease-in-out;
+}
+.b1 { height: 100%; animation-delay: 0.1s; }
+.b2 { height: 60%; animation-delay: 0.4s; background: var(--accent-secondary); }
+.b3 { height: 80%; animation-delay: 0.2s; }
+.b4 { height: 40%; animation-delay: 0.5s; background: #d946ef; }
+.b5 { height: 90%; animation-delay: 0.3s; }
