@@ -213,3 +213,96 @@
 .b3 { height: 80%; animation-delay: 0.2s; }
 .b4 { height: 40%; animation-delay: 0.5s; background: #d946ef; }
 .b5 { height: 90%; animation-delay: 0.3s; }
+
+@keyframes equalize {
+  from { transform: scaleY(1); }
+  to   { transform: scaleY(0.3); }
+}
+
+/* ── Idle extras ── */
+.aura-coords {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+  border-radius: 14px;
+}
+.aura-acc {
+  color: var(--text-secondary);
+  opacity: 0.7;
+  font-size: 0.72rem;
+}
+.aura-warn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  color: var(--warning);
+  margin-bottom: 24px;
+  border: 1px solid rgba(245,158,11,0.25);
+}
+
+/* ── Scanning sub-text ── */
+.scan-sub {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.55);
+  margin-top: 4px;
+}
+
+/* ── Wikipedia content ── */
+.wiki-thumb {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 16px;
+}
+
+.wiki-extract {
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
+  color: rgba(255,255,255,0.88) !important;
+  margin-bottom: 14px !important;
+}
+
+.wiki-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.76rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 16px;
+}
+
+.wiki-read-more {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.78rem;
+  transition: opacity 0.2s;
+}
+.wiki-read-more:hover { opacity: 0.8; }
+
+.wiki-loading,
+.wiki-error,
+.wiki-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 24px;
+  text-align: center;
+  color: rgba(255,255,255,0.65);
+  font-size: 0.88rem;
+}
+.wiki-loading { flex-direction: row; justify-content: center; }
+.wiki-loading .spin-icon { width: 18px; height: 18px; }
+
