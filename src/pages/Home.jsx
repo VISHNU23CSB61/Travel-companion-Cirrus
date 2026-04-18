@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Droplets, Wind, Sun, ChevronRight, Zap,
   Award, TrendingUp, Coffee, Star, Clock,
@@ -53,10 +54,10 @@ function WeatherSkeleton() {
 
 /* ─── Quick Actions ─── */
 const QUICK_ACTIONS = [
-  { icon: <Plane size={18} />,   label: 'Flights',  color: '#3b82f6' },
-  { icon: <MapPin size={18} />,  label: 'Nearby',   color: '#10b981' },
-  { icon: <Camera size={18} />,  label: 'Memories', color: '#d946ef' },
-  { icon: <BookOpen size={18} />,label: 'Journal',  color: '#f59e0b' },
+  { icon: <Plane size={18} />,   label: 'Flights',  color: '#3b82f6', path: '/flights' },
+  { icon: <MapPin size={18} />,  label: 'Nearby',   color: '#10b981', path: '/explore' },
+  { icon: <Camera size={18} />,  label: 'Memories', color: '#d946ef', path: '/capture' },
+  { icon: <BookOpen size={18} />,label: 'Journal',  color: '#f59e0b', path: null },
 ];
 
 /* ────────────────────────────────── */
@@ -71,6 +72,7 @@ const Home = () => {
 
   const { coords, loading: geoLoading, error: geoError } = useGeolocation();
   const { weather, location, loading: weatherLoading, error: weatherError } = useWeather(coords);
+  const navigate = useNavigate();
 
   const isLoading = geoLoading || weatherLoading;
   const locationName = location?.shortDisplay ?? location?.city ?? '—';
@@ -101,7 +103,13 @@ const Home = () => {
       {/* ── Quick Actions ── */}
       <section className="quick-actions animate-slide-up stagger-2">
         {QUICK_ACTIONS.map((a) => (
-          <button key={a.label} className="quick-action-btn glass-panel" id={`quick-action-${a.label.toLowerCase()}`}>
+          <button
+            key={a.label}
+            className="quick-action-btn glass-panel"
+            id={`quick-action-${a.label.toLowerCase()}`}
+            onClick={() => a.path && navigate(a.path)}
+            style={{ cursor: a.path ? 'pointer' : 'default' }}
+          >
             <div className="qa-icon" style={{ background: `${a.color}22`, color: a.color }}>{a.icon}</div>
             <span>{a.label}</span>
           </button>
